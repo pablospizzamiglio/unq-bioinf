@@ -1,3 +1,6 @@
+from operator import attrgetter
+from typing import NamedTuple
+
 aminoacid_structure_preferences = {
     "A": {
         "name": "Alanine",
@@ -122,22 +125,24 @@ aminoacid_structure_preferences = {
 }
 
 
+class Structure(NamedTuple):
+    label: str
+    probability: float
+
+
 def predict_secondary_structure(protein_sequence: str) -> str:
     prediction = []
     for aminoacid in protein_sequence:
         preference = aminoacid_structure_preferences[aminoacid]
-        preferred_structure_probability = max(
-            preference["a_helix"],
-            preference["b_sheet"],
-            preference["loop"],
+        preferred_structure = max(
+            (
+                Structure("H", preference["a_helix"]),
+                Structure("B", preference["b_sheet"]),
+                Structure("L", preference["loop"]),
+            ),
+            key=attrgetter("probability"),
         )
-
-        if preferred_structure_probability == preference["a_helix"]:
-            prediction.append("H")
-        elif preferred_structure_probability == preference["b_sheet"]:
-            prediction.append("B")
-        else:
-            prediction.append("L")
+        prediction.append(preferred_structure.label)
 
     return "".join(prediction)
 
