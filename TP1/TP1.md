@@ -21,7 +21,7 @@ s = "CGTAACAAGGTTTCCGTAGGTGAACC..."
 
 ## Desafío 3
 
-Ya que la estructura terciaria de una proteína plegamiento tridimensional de las proteínas debido a las interacciones de sus cadenas laterales, se puede representar de la siguiente como un diccionario de tuplas que contienen coordenadas en el espacio de tres dimensiones, la clave de este diccionario debería seguir el orden de la secuencia de aminoácidos. En Python, se vería de la siguiente manera:
+La estructura terciaria es un plegamiento tridimensional de las proteínas debido a las interacciones de sus cadenas laterales, por lo que se puede representar como un diccionario de tuplas que contienen coordenadas en el espacio de tres dimensiones. La clave de este diccionario debería seguir el orden de la secuencia de aminoácidos. En Python, se vería de la siguiente manera:
 
 ```python
 t = {
