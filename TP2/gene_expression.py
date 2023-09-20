@@ -13,7 +13,7 @@ THYMINE = "T"
 ANTICODONS = {
     "U": "A",
     "C": "G",
-    "A": THYMINE,
+    "A": "U",
     "G": "C",
 }
 
