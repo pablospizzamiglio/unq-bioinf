@@ -85,6 +85,7 @@ def main() -> None:
             or not player_input.startswith(START_CODON)
             or not player_input.endswith(tuple(STOP_CODONS))
             or THYMINE in player_input
+            or len(player_input) % 3 != 0
         ):
             print(
                 "Traducción interrumpida: "
