@@ -25,19 +25,25 @@ def pair(arnm: str) -> list[tuple[str, str]]:
         codon = arnm[i : i + 3]
         computed_anticodon = "".join([BASES.get(base, "") for base in codon])
 
-        tries = 3
-        while tries > 0:
+        pair = None
+        for i in range(3, 0, -1):
             anticodon = (
-                input(f"Traducción: ingresa el codón complementario para {codon}: ")
+                input(
+                    f"Traducción - Ingresá el codón complementario para {codon}, intentos restantes: {i}: "
+                )
                 .strip()
                 .upper()
             )
             if computed_anticodon == anticodon:
-                proteine.append((codon, anticodon))
+                pair = (codon, computed_anticodon)
                 break
-            else:
-                tries -= 1
-                print(f"El complemento no es válido. Intentos restantes: {tries}")
+
+        if pair:
+            proteine.append((codon, computed_anticodon))
+        else:
+            raise Exception(
+                "¡No tenés suficientes nutrientes para sintetizar proteínas!"
+            )
 
     return proteine
 
@@ -71,8 +77,9 @@ def main() -> None:
         print()
 
         player_input = (
-            input("Transcripción: ingresa una cadena de ARNm: ").strip().upper()
+            input("Transcripción - Ingresá una cadena de ARNm: ").strip().upper()
         )
+        print()
 
         if player_input.casefold() == QUIT:
             print("¡Gracias por jugar!")
@@ -85,10 +92,7 @@ def main() -> None:
             or THYMINE in player_input
             or len(player_input) % 3 != 0
         ):
-            print(
-                "Traducción interrumpida: "
-                "¡No puedo unirme al ribosoma, tu gen es mutante!"
-            )
+            print("¡No puedo unirme al ribosoma, tu gen es mutante!")
             score -= 1
             continue
 
@@ -96,10 +100,13 @@ def main() -> None:
 
         try:
             proteine = pair(arnm)
-            print(f"¡Felicitaciones! Obtuviste la proteína: {proteine}")
+            print()
+            print("¡Felicitaciones!")
+            print(f"Obtuviste la proteína: {proteine}")
             score += 20
-        except Exception:
-            print("¡No tenés suficientes nutrientes para sintetizar proteínas!")
+        except Exception as e:
+            print()
+            print(e)
             score -= 5
 
 
