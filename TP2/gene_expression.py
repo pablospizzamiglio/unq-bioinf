@@ -10,7 +10,7 @@ STOP_CODONS = [
 
 THYMINE = "T"
 
-ANTICODONS = {
+BASES = {
     "U": "A",
     "C": "G",
     "A": "U",
@@ -23,9 +23,7 @@ def pair(arnm: str) -> list[tuple[str, str]]:
 
     for i in range(0, len(arnm), 3):
         codon = arnm[i : i + 3]
-        computed_anticodon = "".join(
-            [ANTICODONS.get(aminoacid, "") for aminoacid in codon]
-        )
+        computed_anticodon = "".join([BASES.get(base, "") for base in codon])
 
         tries = 3
         while tries > 0:
