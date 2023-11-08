@@ -1,4 +1,4 @@
-# Bioinformática - TP 3
+# Bioinformática - TP 3: ¿En qué se parecen una gallina y una mosca?
 
 | Secuencia      | Nombre taxonómico        | Nombre común          |
 | -------------- | ------------------------ | --------------------- |

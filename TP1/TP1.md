@@ -1,4 +1,4 @@
-# Bioinformática - TP 1
+# Bioinformática - TP 1: Biomoléculas
 
 ## Desafío 1
 
